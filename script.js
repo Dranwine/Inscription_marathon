@@ -24,7 +24,9 @@ nom.setAttribute("type", "text")
 nom.setAttribute("id", "nom")
 nom.setAttribute("name", "nom")
 nom.setAttribute("placeholder", "nom")
-document.querySelector("#label1").append(nom)
+nom.setAttribute("class", "input")
+nom.setAttribute("value", "")
+document.querySelector("#div_nom").append(nom)
 
 //création du paramètre prénom du formulaire
 //création d'une div qui contien le label
@@ -44,7 +46,9 @@ prenom.setAttribute("type", "text")
 prenom.setAttribute("id", "prenom")
 prenom.setAttribute("name", "prenom")
 prenom.setAttribute("placeholder", "prenom")
-document.querySelector("#label2").append(prenom)
+prenom.setAttribute("class", "input")
+prenom.setAttribute("value", "")
+document.querySelector("#div_prenom").append(prenom)
 
 //création du paramètre age du formulaire
 //création d'une div qui contien le label
@@ -64,7 +68,9 @@ age.setAttribute("type", "text")
 age.setAttribute("id", "age")
 age.setAttribute("name", "age")
 age.setAttribute("placeholder", "age")
-document.querySelector("#label3").append(age)
+age.setAttribute("value", "")
+age.setAttribute("class", "input")
+document.querySelector("#div_age").append(age)
 
 //création du paramètre date de naissance du formulaire
 //création d'une div qui contien le label
@@ -84,7 +90,9 @@ naissance.setAttribute("type", "text")
 naissance.setAttribute("id", "naissance")
 naissance.setAttribute("name", "naissance")
 naissance.setAttribute("placeholder", "naissance")
-document.querySelector("#label4").append(naissance)
+naissance.setAttribute("value", "")
+naissance.setAttribute("class", "input")
+document.querySelector("#div_naissance").append(naissance)
 
 //création du numéro de chasuble du formulaire
 //création d'une div qui contien le label
@@ -104,7 +112,76 @@ chasuble.setAttribute("type", "text")
 chasuble.setAttribute("id", "chasuble")
 chasuble.setAttribute("name", "chasuble")
 chasuble.setAttribute("placeholder", "chasuble")
-document.querySelector("#label5").append(chasuble)
+chasuble.setAttribute("class", "input")
+chasuble.setAttribute("value", "")
+document.querySelector("#div_chasuble").append(chasuble)
 
+//création du tableau
+const tableaux = document.createElement("table")
+document.querySelector(".div_principale").append(tableaux)
+tableaux.setAttribute("id", "table")
+table.setAttribute("class", "tableaux")
 
-console.log(div_principale, formulaire,div_nom, label_nom, nom,)
+//création de l'entête du tableau
+const thead = document.createElement("thead")
+document.querySelector("#table").append(thead)
+thead.setAttribute("id", "tableau_head")
+thead.setAttribute("class", "tableaux")
+
+//création de la première ligne de l'entête du tableau
+const tete_ligne = document.createElement("tr")
+document.querySelector("#tableau_head").append(tete_ligne)
+tete_ligne.setAttribute("id", "tête_tr")
+tete_ligne.setAttribute("class", "tableaux")
+
+//création des collone dans la première ligne de l'entête du tableau
+const nom_colonne_tête_tr = ['N° chasuble', 'Nom', 'Prénom', 'Âge', 'Date de naissance']
+
+nom_colonne_tête_tr.forEach(info => {
+    const th = document.createElement('th');
+    th.setAttribute("class", "tableaux")
+    th.textContent = info;
+    tete_ligne.appendChild(th);
+})
+
+// création du tbody
+const tbody = document.createElement("tbody")
+tbody.id = "tbody"
+table.appendChild(tbody)
+tbody.setAttribute("class", "tableaux")
+
+//intéraction entre le formulaire et le tableaux
+//création d'un bouton
+const bouton = document.createElement("button")
+bouton.textContent = "Envoyer"
+document.querySelector(".formulaire").append(bouton)
+formulaire.addEventListener("submit", Add_info)
+
+//création de la fonction qui permet de compléter le tableau avec les éléments soumis par le formulaire
+function Add_info(event){
+
+    event.preventDefault();
+    let nom = document.getElementById('nom').value
+    let prenom = document.getElementById('prenom').value
+    let age = document.getElementById('age').value
+    let naissance = document.getElementById('naissance').value
+    let chasuble = document.getElementById('chasuble').value
+
+    if (nom && prenom && age && naissance && chasuble){
+        let tableaux = document.getElementById("tbody");
+        let ligne = document.createElement("tr");
+        ligne.setAttribute("class", "tableaux")
+
+        const info = [chasuble, nom, prenom, age, naissance]
+
+        info.forEach(text => {
+            let td = document.createElement("td");
+            td.setAttribute("class", "tableaux")
+
+            td.textContent = text;
+            ligne.appendChild(td);
+        });
+        tableaux.appendChild(ligne)
+        formulaire.reset();
+    }
+}

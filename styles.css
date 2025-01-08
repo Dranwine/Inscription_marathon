@@ -1,3 +1,27 @@
-#div_prenom{
+.div_principale{
+    display: flex;
+    border: solid 3px black;
+    justify-content: space-around;
+    width: 100%;
+    height: auto;
+}
+
+table{
+    border-collapse: collapse;
+    height: 100px;
+    width: 50%;
+}
+
+form{
     border: solid 3px red;
+}
+
+.attribut{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.tableaux{
+    border: 2px solid black;
 }
