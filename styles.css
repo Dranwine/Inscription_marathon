@@ -12,10 +12,6 @@ table{
     width: 50%;
 }
 
-form{
-    border: solid 3px red;
-}
-
 .attribut{
     display: flex;
     flex-direction: column;

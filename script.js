@@ -180,8 +180,11 @@ function Add_info(event){
 
             td.textContent = text;
             ligne.appendChild(td);
+
         });
         tableaux.appendChild(ligne)
         formulaire.reset();
+    } else {
+        alert("Veuillez remplir tous les champs!");
     }
 }
